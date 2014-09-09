@@ -58,9 +58,9 @@ Links MAY contain templated uris conforming to the [spec](http://tools.ietf.org/
 }
 ```
 
-##Profile
+##Type
 
-A link MAY contain a profile element which MUST be a valid URI. The URI SHOULD be dereferencable to a documentation in a given format (e.g. html, plain text, json schema, etc.)
+A link MAY contain a type element which MUST be a valid URI. The URI SHOULD be dereferencable to a documentation in a given format (e.g. html, plain text, json schema, etc.)
 
 ```javascript
 {
@@ -68,7 +68,7 @@ A link MAY contain a profile element which MUST be a valid URI. The URI SHOULD b
     "create": {
       "href": "/users",
       "method": "POST",
-      "profile": "http://schema.hyperfriendly.net/collection"
+      "type": "http://schema.hyperfriendly.net/collection"
     }
   }
 }
