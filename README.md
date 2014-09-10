@@ -152,7 +152,7 @@ A collection resource MUST contain an _items array. The collection resource MAY 
 
 **PROFILE:** http://profiles.hyperfriendly.net/feed
 
-A feed is a special collection where the payload is an event wrapped in a apecial envelope. It contains a history of events and can be chained using next and prev links.
+A feed is a special collection where the payload is an event wrapped in a special envelope. It contains a history of events and can be chained using next and prev links.
 
 The envelope MUST contain a messageType, sequenceNumber and a body object. It MAY contain a headers object with metadata.
 
