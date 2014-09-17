@@ -126,6 +126,9 @@ A link MAY contain a *method* element that describes which http method should be
 ```javascript
 {
   "_links": {
+    "profile": {
+      "href": "http://profiles.hyperfriendly.net/method-hint"
+    },
     "add_user": {
       "href": "/users",
       "method": "POST"
@@ -185,15 +188,18 @@ An error resource MUST contain an _errors collection. A error item MUST have a t
 
 ###Schema
 
-**PROFILE:** http://profiles.hyperfriendly.net/schema
+**PROFILE:** http://profiles.hyperfriendly.net/json-schema
 
-The schema profile adds the following semantics to a link.
+The json schema profile adds the following semantics to a link.
 
 A link MAY contain a schema element conforming to the [json schema spec](http://json-schema.org/)
 
 ```javascript
 {
   "_links": {
+    "profile": {
+      "href": "http://profiles.hyperfriendly.net/json-schema"
+    },
     "create": {
       "href": "/users",
       "method": "POST",
@@ -234,6 +240,9 @@ Json schema also supports referencing other schema.
 ```javascript
 {
   "_links": {
+    "profile": {
+      "href": "http://profiles.hyperfriendly.net/json-schema"
+    },
     "create": {
       "href": "/users",
       "method": "POST",
