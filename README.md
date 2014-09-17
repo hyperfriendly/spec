@@ -1,6 +1,6 @@
 #hyperfriendly+json
 
-A simple and friendly JSON hypermedia format.
+A simple and extensible JSON hypermedia format. The core specification is very simple - it just adds link semantics to a JSON object - but can be extended using profiles.
 
 **media-type:** "vnd/hyperfriendly+json"
 
@@ -22,7 +22,9 @@ hyperfriendly+json is a superset of JSON. The following is therefore valid hyper
 
 ##Links
 
-A hyperfriendly+json object MAY contain a _links object. If present, this object MUST contain at least one link. A link MUST contain a href which can be an absolute or a releative URI.
+A hyperfriendly+json object MAY contain a _links object. If present, this object MUST contain at least one rel containing one or more links. If a rel contains a single link it MUST be represented as an JSON object. If a rel contains multiple links it MUST be represented as a JSON array.
+
+A link MUST contain a href which can be an absolute or a releative URI.
 
 ```javascript
 {
@@ -32,7 +34,15 @@ A hyperfriendly+json object MAY contain a _links object. If present, this object
     },
     "friends": {
       "href": "/friends/1"
-    }
+    },
+    "alternate": [
+      {
+        "href": "/people/1"
+      },
+      {
+        "href": "/customers/1"
+      }
+    ]
   },
   "firstName": "Bob",
   "lastName": "Anderson",
@@ -58,52 +68,9 @@ Links MAY contain templated uris conforming to the [spec](http://tools.ietf.org/
 }
 ```
 
-###Type
-A link MAY contain a type element describing how to interact with the resource. (See section on types for more information)
-
-```javascript
-{
-  "_links": {
-    "users": {
-      "href": "/users",
-      "type": "http://api.example.com/types/user"
-    }
-  }
-}
-```
-
-
-
-###Method
-A link MAY contain a *method* element that describes which http method should be used to interact with the resource.
-
-```javascript
-{
-  "_links": {
-    "add_user": {
-      "href": "/users",
-      "method": "POST"
-    }
-  }
-}
-```
-
-##Types
-A resource MAY contain a *type* element which MUST be a valid URI. The URI SHOULD be dereferencable to a documentation of the expected payload (e.g. json schema, html, plain text, etc).
-
-```javascript
-{
-  "_links": {
-    "type": {
-      "href": "http://api.example.com/types/user"
-    }
-  }
-}
-```
-
 ##Profiles
 
-Semantics can be added to a hyperfriendly+json resource through profiles. Setting a profile is as simple as adding a *profile* link with a special URI. Some profiles have already been defined and are listed below.
+Semantics can be added to a hyperfriendly+json resource through profiles. Setting a profile is as simple as adding one or more *profile* links pointing to a special URI. Some profiles have already been defined and are listed below.
 
 ###Collection
 
@@ -145,6 +112,25 @@ A collection resource MUST contain an _items array. The collection resource MAY 
       "name": "Another user"
     }
   ]
+}
+```
+
+###Method hint
+
+**PROFILE:** http://profiles.hyperfriendly.net/method-hint
+
+The method hint profile adds semantics to a link in the following way.
+
+A link MAY contain a *method* element that describes which http method should be used to interact with the resource.
+
+```javascript
+{
+  "_links": {
+    "add_user": {
+      "href": "/users",
+      "method": "POST"
+    }
+  }
 }
 ```
 
@@ -194,5 +180,67 @@ An error resource MUST contain an _errors collection. A error item MUST have a t
       "message": "Some error has occurred"
     }
   ]
+}
+```
+
+###Schema
+
+**PROFILE:** http://profiles.hyperfriendly.net/schema
+
+The schema profile adds the following semantics to a link.
+
+A link MAY contain a schema element conforming to the [json schema spec](http://json-schema.org/)
+
+```javascript
+{
+  "_links": {
+    "create": {
+      "href": "/users",
+      "method": "POST",
+      "schema": {
+        "title": "Create user",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "required": true
+          },
+          "lastName": {
+            "type": "string",
+            "required": true
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "postalCode": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9999
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Json schema also supports referencing other schema.
+
+```javascript
+{
+  "_links": {
+    "create": {
+      "href": "/users",
+      "method": "POST",
+      "schema": {
+        "$ref": "http://api.test.com/schema/new-user.json"
+      }
+    }
+  }
 }
 ```
