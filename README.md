@@ -1,6 +1,8 @@
 #hyperfriendly+json
 
-A simple and extensible JSON hypermedia format. The core specification is very simple - it just adds link semantics to a JSON object - but can be extended using profiles.
+A simple and extensible JSON hypermedia format. 
+
+The hyperfriendly+json spec adds link semantics to a JSON object but is also extendable by using profiles.
 
 **media-type:** "vnd/hyperfriendly+json"
 
@@ -70,7 +72,9 @@ Links MAY contain templated uris conforming to the [spec](http://tools.ietf.org/
 
 ##Profiles
 
-Semantics can be added to a hyperfriendly+json resource through profiles. Setting a profile is as simple as adding one or more *profile* links pointing to a special URI. Some profiles have already been defined and are listed below.
+Semantics can be added to a hyperfriendly+json resource through profiles. Setting a profile is as simple as adding one or more *profile* links pointing to a special URI. Anyone can extend hyperfriendly+json with their own profiles.
+
+Some profiles have already been defined and are listed below.
 
 ###Collection
 
