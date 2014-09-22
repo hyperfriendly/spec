@@ -119,6 +119,26 @@ A collection resource MUST contain an _items array. The collection resource MAY 
 }
 ```
 
+###Error
+
+**PROFILE:** http://profiles.hyperfriendly.net/error
+
+An error resource MUST contain an _errors collection. A error item MUST have a title and a message.
+
+```javascript
+{
+  "_links" : {
+    "profile": "http://profiles.hyperfriendly.net/error"
+  },
+  "_errors": [
+    {
+      "title": "Some error",
+      "message": "Some error has occurred"
+    }
+  ]
+}
+```
+
 ###Method hint
 
 **PROFILE:** http://profiles.hyperfriendly.net/method-hint
@@ -166,26 +186,6 @@ The envelope MUST contain a messageType, sequenceNumber and a body object. It MA
       "meta": "data"
     }
   }
-  ]
-}
-```
-
-###Error
-
-**PROFILE:** http://profiles.hyperfriendly.net/error
-
-An error resource MUST contain an _errors collection. A error item MUST have a title and a message.
-
-```javascript
-{
-  "_links" : {
-    "profile": "http://profiles.hyperfriendly.net/error"
-  },
-  "_errors": [
-    {
-      "title": "Some error",
-      "message": "Some error has occurred"
-    }
   ]
 }
 ```
