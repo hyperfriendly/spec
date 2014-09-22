@@ -56,6 +56,24 @@ A link MUST contain a href which can be an absolute or a releative URI.
 }
 ```
 
+###Link profiles
+
+The semantics of a link can be extended via the OPTIONAL linkProfiles array. A link profile MUST be a valid URI. 
+
+In the following example the method hint profile is used to tell the client that this link contains a *method* property describing how to create a new resource.
+
+```javascript
+{
+  "_links": {
+    "add_friend": {
+      "href": "/friends",
+      "linkProfiles": [ "http://profiles.hyperfriendly.net/method-hint" ],
+      "method": "POST"
+    }
+  }
+}
+```
+
 ###Templated links
 
 Links MAY contain templated uris conforming to the [spec](http://tools.ietf.org/html/rfc6570)
