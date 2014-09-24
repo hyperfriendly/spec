@@ -59,9 +59,9 @@ The semantics of an entire hyperfriendly+json resource can be added through prof
  * [Feed][feed]
 
 [wiki]: https://github.com/hyperfriendly/spec/wiki/Home
-[templated]: https://github.com/hyperfriendly/spec/wiki/Link-profile:-Templated-link
-[methodhint]: https://github.com/hyperfriendly/spec/wiki/Link-profile:-Method-hint
-[jsonschema]: https://github.com/hyperfriendly/spec/wiki/Link-profile:-JSON-Schema
-[collection]: https://github.com/hyperfriendly/spec/wiki/Resource-profile:-Collection
-[error]: https://github.com/hyperfriendly/spec/wiki/Resource-profile:-Error
-[feed]: https://github.com/hyperfriendly/spec/wiki/Resource-profile:-Feed
+[templated]: http://profiles.hyperfriendly.net/templated-link
+[methodhint]: http://profiles.hyperfriendly.net/method-hint
+[jsonschema]: http://profiles.hyperfriendly.net/json-schema
+[collection]: http://profiles.hyperfriendly.net/collection
+[error]: http://profiles.hyperfriendly.net/error
+[feed]: http://profiles.hyperfriendly.net/feed
